@@ -3,7 +3,7 @@ import traceback
 
 from selenium.webdriver.common.keys import Keys
 
-from RequestXPath import RequestXPath
+from DynamicWebParse.RequestXPath import RequestXPath
 
 
 class Requests():

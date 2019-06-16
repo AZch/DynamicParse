@@ -1,6 +1,6 @@
 import time
 
-import Base as Base
+from DynamicWebParse import Base as Base
 
 
 class RequestXPath():

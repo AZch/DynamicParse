@@ -2,7 +2,7 @@ from pyvirtualdisplay import Display
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-class DynamicParse():
+class DynamicWebParse():
     def __init__(self, pathDriver):
         self.__path = pathDriver
         self.__driver = None
