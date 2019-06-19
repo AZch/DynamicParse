@@ -51,6 +51,12 @@ class Requests():
                 print('TIMEOUT:\n', traceback.format_exc())
                 time.sleep(1)
 
+    def sendKeysElem(self, elem, keys):
+        elem.send_keys(keys)
+
+    def sendKeysGetElem(self, getData, keys):
+        self.getElem(getData).send_keys(keys)
+
 
 def clickGetElemCtrl(driver, get):
     startTime = time.time()
