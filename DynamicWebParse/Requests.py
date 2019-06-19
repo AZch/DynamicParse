@@ -1,6 +1,7 @@
 import time
 import traceback
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 from DynamicWebParse.RequestXPath import RequestXPath
@@ -10,6 +11,16 @@ class Requests():
     def __init__(self, driver):
         self.__requestsFactory = RequestXPath()
         self.__driver = driver
+
+    def getDriver(self):
+        return self.__driver
+
+    def actionChainsToElem(self, action, elem):
+        act = action(elem)
+        act.perform()
+
+    def moveToElem(self, elem):
+        self.actionChainsToElem(ActionChains(self.__driver).move_to_element, elem)
 
     def setFactoryXPath(self):
         self.__requestsFactory = RequestXPath()
