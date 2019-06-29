@@ -34,13 +34,18 @@ class Requests():
     def clickElem(self, getData, breakTime=None):
         return self.__requestsFactory.clickElem(getData, self.__driver, breakTime)
 
+    def submitElem(self, getData, breakTime=None):
+        elem = self.__requestsFactory.getElem(getData, self.__driver, breakTime)
+        if not isinstance(elem, bool):
+            elem.submit()
+
     def clickElems(self, getData, breakTime=None):
         return self.__requestsFactory.clickElems(getData, self.__driver, breakTime)
 
     def notNecessaryClick(self, getData, breakTime=None):
         return self.__requestsFactory.notNecessarlyClick(getData, self.__driver, breakTime)
 
-    def allwaysLoadPage(self, url, timeWait=60):
+    def allwaysLoadPage(self, url, timeWait=60, sleepTime=120):
         while True:
             try:
                 self.__driver.set_page_load_timeout(timeWait)
@@ -49,7 +54,7 @@ class Requests():
                 break
             except:
                 print('TIMEOUT:\n', traceback.format_exc())
-                time.sleep(1)
+                time.sleep(sleepTime)
 
     def sendKeysElem(self, elem, keys):
         elem.send_keys(keys)
