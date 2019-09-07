@@ -19,6 +19,12 @@ class DynamicWebParse():
         self.__driver = self.initDriver()
         return self.__driver
 
+    def swithToFrame(self, frame):
+        self.__driver.switch_to.frame(frame)
+
+    def swithToParentFrame(self):
+        self.__driver.switch_to.parent_frame()
+
     def makeDisplay(self, visible=0, size=(1920, 1080)):
         return Display(visible=visible, size=size).start()
 

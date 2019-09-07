@@ -25,6 +25,18 @@ class Requests():
     def setFactoryXPath(self):
         self.__requestsFactory = RequestXPath()
 
+    def WaitHaveElem(self, getData, param, load, breakTime=None):
+        while True:
+            startTime = time.time()
+            try:
+                if self.getElem(getData, breakTime=breakTime)[param] == load:
+                    break
+                if time.time() - startTime > breakTime:
+                    break
+            except:
+                break
+
+
     def getElem(self, getData, breakTime=None):
         return self.__requestsFactory.getElem(getData, self.__driver, breakTime)
 
@@ -41,6 +53,15 @@ class Requests():
 
     def clickElems(self, getData, breakTime=None):
         return self.__requestsFactory.clickElems(getData, self.__driver, breakTime)
+
+    def clickExistElems(self, elems):
+        try:
+            for elem in elems:
+                elem.click()
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     def notNecessaryClick(self, getData, breakTime=None):
         return self.__requestsFactory.notNecessarlyClick(getData, self.__driver, breakTime)
@@ -61,6 +82,13 @@ class Requests():
 
     def sendKeysGetElem(self, getData, keys):
         self.getElem(getData).send_keys(keys)
+
+    def getAllElemsParam(self, param, getData, breakTime=None):
+        result = list()
+        for elem in self.getElems(getData, breakTime):
+            result.append(elem[param])
+        return result
+
 
 
 def clickGetElemCtrl(driver, get):
